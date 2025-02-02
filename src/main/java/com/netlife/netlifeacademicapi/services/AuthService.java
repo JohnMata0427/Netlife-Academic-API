@@ -168,9 +168,6 @@ public class AuthService {
 
         userRepository.save(user);
 
-        System.out.println("Token: " + token);
-        System.out.println("Verification Code: " + verificationCode);
-
         emailSender.recoveryPasswordEmail(email, user.getName(), verificationCode, token);
 
         return Map.of("message", "Correo enviado exitosamente");

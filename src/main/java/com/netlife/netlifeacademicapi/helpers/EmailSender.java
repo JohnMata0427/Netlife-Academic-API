@@ -1,5 +1,6 @@
 package com.netlife.netlifeacademicapi.helpers;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -23,9 +24,9 @@ public class EmailSender {
     private final String htmlTemplate;
 
     private EmailSender() throws Exception {
-        this.htmlTemplate = (Files
-                .readAllBytes(Paths.get(getClass().getClassLoader().getResource("email-template.html").toURI())))
-                .toString();
+        this.htmlTemplate = new String(
+                Files.readAllBytes(Paths.get(getClass().getClassLoader().getResource("email-template.html").toURI())),
+                StandardCharsets.UTF_8);
     }
 
     public void verificationCodeEmail(String toUserMail, String verificationCode) {
